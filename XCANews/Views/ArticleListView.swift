@@ -9,14 +9,25 @@ import SwiftUI
 
 struct ArticleListView: View {
     let articles: [Article]
+    @State private var selectedArticle: Article?
     
     var body: some View {
         List(content: {
             ForEach(articles, content: { article in
                 ArticleRowView(article: article)
+                    .onTapGesture {
+                        selectedArticle = article
+                    }
             })
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .listRowSeparator(.hidden)
         })
         .listStyle(.plain)
+        .sheet(item: $selectedArticle, content: {
+            if let url = $0.url {
+                SafariView(url: url)
+            }
+        })
     }
 }
 

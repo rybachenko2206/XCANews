@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		42743E92284BCCCB000D17B2 /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42743E91284BCCCB000D17B2 /* ArticleListView.swift */; };
+		42743E95284C5922000D17B2 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42743E94284C5922000D17B2 /* SafariView.swift */; };
 		4283F86E28465A6E0093DD80 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4283F86D28465A6E0093DD80 /* Article.swift */; };
 		4283F871284767DC0093DD80 /* ArticleRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4283F870284767DC0093DD80 /* ArticleRowView.swift */; };
 		42E3BE4128476CE20018A9AE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E3BE4028476CE20018A9AE /* Array.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		42743E91284BCCCB000D17B2 /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
+		42743E94284C5922000D17B2 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		4283F86D28465A6E0093DD80 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4283F870284767DC0093DD80 /* ArticleRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRowView.swift; sourceTree = "<group>"; };
 		42E3BE4028476CE20018A9AE /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		42743E93284C590B000D17B2 /* UIKitViews */ = {
+			isa = PBXGroup;
+			children = (
+				42743E94284C5922000D17B2 /* SafariView.swift */,
+			);
+			path = UIKitViews;
+			sourceTree = "<group>";
+		};
 		4283F868284657FD0093DD80 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +91,7 @@
 		4283F86F284767850093DD80 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				42743E93284C590B000D17B2 /* UIKitViews */,
 				4283F870284767DC0093DD80 /* ArticleRowView.swift */,
 				42743E91284BCCCB000D17B2 /* ArticleListView.swift */,
 			);
@@ -200,6 +211,7 @@
 				42743E92284BCCCB000D17B2 /* ArticleListView.swift in Sources */,
 				42E3BE4128476CE20018A9AE /* Array.swift in Sources */,
 				42F0BAC42846490F004BAE4E /* XCANewsApp.swift in Sources */,
+				42743E95284C5922000D17B2 /* SafariView.swift in Sources */,
 				42E3BE4328476CF70018A9AE /* PrintExtensions.swift in Sources */,
 				4283F871284767DC0093DD80 /* ArticleRowView.swift in Sources */,
 				4283F86E28465A6E0093DD80 /* Article.swift in Sources */,
