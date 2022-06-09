@@ -49,6 +49,7 @@ struct ArticleRowView: View {
             
             Spacer()
             
+            // bookmark button
             Button(action: {
                 pl("bookmark button tapped")
             }, label: {
@@ -56,8 +57,11 @@ struct ArticleRowView: View {
             })
             .buttonStyle(.bordered)
             
+            // share button
             Button(action: {
-                pl("Share button tapped")
+                if let articleUrl = article.url {
+                    presentShareSheet(with: articleUrl)
+                }
             }, label: {
                 Image(systemName: "square.and.arrow.up")
             })

@@ -26,6 +26,7 @@ struct ArticleListView: View {
         .sheet(item: $selectedArticle, content: {
             if let url = $0.url {
                 SafariView(url: url)
+                    .edgesIgnoringSafeArea(.bottom)
             }
         })
     }

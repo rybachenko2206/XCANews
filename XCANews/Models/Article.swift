@@ -62,19 +62,6 @@ extension Article {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
-//        do {
-////            let dataUrl = try Bundle.main.url(forResource: "GetNewsStub", withExtension: "json")
-//            let dataUrl = try Bundle.main.url(forResource: "GetNewsStub", withExtension: "json")
-//            pl(dataUrl)
-//
-//            let data = try Data(contentsOf: dataUrl!)
-//            let response = try decoder.decode(GetArticlesResponse.self, from: data)
-//            return response.articles ?? []
-//        } catch let error {
-//            pl(error)
-//            return []
-//        }
-        
         guard let dataUrl = Bundle.main.url(forResource: "GetNewsStub", withExtension: "json"),
               let data = try? Data(contentsOf: dataUrl),
               let response = try? decoder.decode(GetArticlesResponse.self, from: data)
@@ -95,7 +82,11 @@ struct GetArticlesResponse: Decodable {
     let articles: [Article]?
     let totalResults: Int?
     
-    let status: String?
+    let status: ResponseStatus?
     let code: String?
     let message: String?
+}
+
+enum ResponseStatus: String, Decodable {
+    case ok, error
 }

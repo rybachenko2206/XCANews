@@ -9,10 +9,9 @@ import SwiftUI
 
 @main
 struct XCANewsApp: App {
-
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(newsViewModel: NewsViewModel(networkService: NetworkService()))
         }
     }
 }

@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    @StateObject var newsViewModel: NewsViewModel
 
     var body: some View {
-        ArticleListView(articles: Article.stubItems)
+        TabView(content: {
+            NewsTabView(newsVM: newsViewModel)
+                .tabItem({
+                    Label("News", systemImage: "newspaper")
+                })
+        })
     }
 }
 
 
 struct ContentView_Previews: PreviewProvider {
+    private static let stubArticles = Article.stubItems
+    private static let newsVm = NewsViewModel(articles: stubArticles, networkService: NetworkService())
+    
     static var previews: some View {
-        ContentView()
+        ContentView(newsViewModel: newsVm)
     }
 }
