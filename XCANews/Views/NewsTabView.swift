@@ -10,6 +10,20 @@ import SwiftUI
 struct NewsTabView: View {
     @StateObject var newsVM: NewsViewModel
     
+    var body: some View {
+        NavigationView(content: {
+            ArticleListView(articles: articles)
+                .overlay(content: { overlayView })
+                .refreshable(action: {
+                    loadArticles()
+                })
+                .onAppear(perform: {
+                    loadArticles()
+                })
+                .navigationTitle(newsVM.selectedCategory.title)
+        })
+    }
+    
     private var articles: [Article] {
         switch newsVM.state {
         case .success(let articles):
@@ -17,6 +31,12 @@ struct NewsTabView: View {
             
         default:
             return []
+        }
+    }
+    
+    private func loadArticles() {
+        Task {
+            await newsVM.loadArticles()
         }
     }
     
@@ -37,19 +57,6 @@ struct NewsTabView: View {
         default:
             EmptyView()
         }
-    }
-    
-    var body: some View {
-        NavigationView(content: {
-            ArticleListView(articles: articles)
-                .onAppear(perform: {
-                    Task {
-                        await newsVM.loadArticles()
-                    }
-                })
-                .overlay(content: { overlayView })
-                .navigationTitle(newsVM.selectedCategory.title)
-        })
     }
 }
 
