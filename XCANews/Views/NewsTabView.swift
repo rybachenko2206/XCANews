@@ -20,7 +20,11 @@ struct NewsTabView: View {
                 .onAppear(perform: {
                     loadArticles()
                 })
+                .onChange(of: newsVM.selectedCategory, perform: { _ in
+                    loadArticles()
+                })
                 .navigationTitle(newsVM.selectedCategory.title)
+                .navigationBarItems(trailing: menu)
         })
     }
     
@@ -51,12 +55,26 @@ struct NewsTabView: View {
             RetryView(infoText: error.localizedDescription,
                       buttonTitle: "Try again",
                       tapAction: {
-                // TODO: handle retry action
-                pl("refresh data")
+                loadArticles()
             })
         default:
             EmptyView()
         }
+    }
+    
+    @ViewBuilder
+    private var menu: some View {
+        Menu(content: {
+            Picker("Category",
+                   selection: $newsVM.selectedCategory,
+                   content: {
+                ForEach(Category.allCases) {
+                    Text($0.title).tag($0)
+                }
+            })
+        }, label: {
+            Image(systemName: "fibrechannel").imageScale(.large)
+        })
     }
 }
 
