@@ -81,8 +81,10 @@ struct NewsTabView: View {
 struct NewsTabView_Previews: PreviewProvider {
     private static let stubArticles = Article.stubItems
     private static let newsVm = NewsViewModel(articles: stubArticles, networkService: NetworkService())
+    @StateObject static private var bookmarksVM = BookmarksViewModel()
                                          
     static var previews: some View {
         NewsTabView(newsVM: newsVm)
+            .environmentObject(bookmarksVM)
     }
 }

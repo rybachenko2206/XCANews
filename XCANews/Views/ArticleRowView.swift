@@ -10,6 +10,8 @@ import SwiftUI
 struct ArticleRowView: View {
     let article: Article
     
+    @EnvironmentObject var bookmarksVM: BookmarksViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16, content: {
             articleImage()
@@ -51,9 +53,13 @@ struct ArticleRowView: View {
             
             // bookmark button
             Button(action: {
-                pl("bookmark button tapped")
+                handleBookmarkButtonAction()
             }, label: {
-                Image(systemName: "bookmark")
+                if bookmarksVM.isBookmarkedArticle(article) {
+                    Image(systemName: "bookmark.fill")
+                } else {
+                    Image(systemName: "bookmark")
+                }
             })
             .buttonStyle(.bordered)
             
@@ -104,15 +110,25 @@ struct ArticleRowView: View {
         .background(Color.gray.opacity(0.3))
         .clipped()
     }
+    
+    private func handleBookmarkButtonAction() {
+        if bookmarksVM.isBookmarkedArticle(article) {
+            bookmarksVM.removeBookmark(for: article)
+        } else {
+            bookmarksVM.addBookmark(for: article)
+        }
+    }
 }
 
 
 
 struct ArticleRowView_Previews: PreviewProvider {
+    @StateObject static private var bookmarksVM = BookmarksViewModel()
+    
     static var previews: some View {
         NavigationView {
             List(content: {
-                ArticleRowView(article: Article.stubItems[safe: 2]!)
+                ArticleRowView(article: Article.stubItems[safe: 2]!).environmentObject(bookmarksVM)
             })
         }
     }

@@ -33,7 +33,10 @@ struct ArticleListView: View {
 }
 
 struct ArticleListView_Previews: PreviewProvider {
+    @StateObject static private var bookmarksVM = BookmarksViewModel()
+    
     static var previews: some View {
         ArticleListView(articles: Article.stubItems)
+            .environmentObject(bookmarksVM)
     }
 }
