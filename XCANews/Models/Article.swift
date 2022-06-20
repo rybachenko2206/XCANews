@@ -45,7 +45,6 @@ extension Article: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = UUID().uuidString
         author = try? container.decode(String.self, forKey: .author)
         title = try? container.decode(String.self, forKey: .title)
         description = try? container.decode(String.self, forKey: .description)
@@ -54,6 +53,8 @@ extension Article: Decodable {
         imageUrlString = try? container.decode(String.self, forKey: .imageUrlString)
         publishedAt = try? container.decode(Date.self, forKey: .publishedAt)
         source = try? container.decode(Source.self, forKey: .source)
+        
+        id = urlString ?? UUID().uuidString
     }
 }
 

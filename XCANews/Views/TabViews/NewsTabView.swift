@@ -5,7 +5,7 @@
 //  Created by Roman Rybachenko on 08.06.2022.
 //
 
-import SwiftUI
+import SwiftUI  
 
 struct NewsTabView: View {
     @StateObject var newsVM: NewsViewModel

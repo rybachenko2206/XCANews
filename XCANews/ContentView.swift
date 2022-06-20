@@ -16,6 +16,11 @@ struct ContentView: View {
                 .tabItem({
                     Label("News", systemImage: "newspaper")
                 })
+            
+            BookmarksTabView()
+                .tabItem({
+                    Label("Bookmarks", systemImage: "bookmark")
+                })
         })
     }
 }

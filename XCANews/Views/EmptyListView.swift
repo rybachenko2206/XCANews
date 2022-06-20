@@ -18,6 +18,7 @@ struct EmptyListView: View {
                 image
                     .resizable()
                     .imageScale(.large)
+                    .scaledToFit()
                     .frame(maxWidth: 100, maxHeight: 100)
             }
             Text(text)
