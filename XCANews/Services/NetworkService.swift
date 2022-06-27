@@ -25,6 +25,7 @@ class NetworkService: PNetworkService {
     // MARK: - Public funcs
     
     func getNews(for category: Category) async throws -> [Article] {
+        pf()
         guard let urlRequest = APIMethod.getNews(category: category).urlRequest
         else { throw AppError.custom("problem with URLRequest creating") }
         

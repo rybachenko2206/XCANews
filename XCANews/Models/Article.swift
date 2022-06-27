@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct Article: Identifiable {
+struct Article: Identifiable, Equatable {
     let source: Source?
     let author: String?
     let title: String?
     let description: String?
     let publishedAt: Date?
     let content: String?
-    let id: String
+    
+    var id: String { urlString ?? UUID().uuidString }
     
     private let urlString: String?
     var url: URL? {
@@ -35,7 +36,7 @@ struct Article: Identifiable {
     }
 }
 
-extension Article: Decodable {
+extension Article: Codable {
     enum CodingKeys: String, CodingKey {
         case author, title, description, publishedAt, content, source
         case urlString = "url"
@@ -53,8 +54,18 @@ extension Article: Decodable {
         imageUrlString = try? container.decode(String.self, forKey: .imageUrlString)
         publishedAt = try? container.decode(Date.self, forKey: .publishedAt)
         source = try? container.decode(Source.self, forKey: .source)
-        
-        id = urlString ?? UUID().uuidString
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try? container.encode(author, forKey: .author)
+        try? container.encode(title, forKey: .title)
+        try? container.encode(description, forKey: .description)
+        try? container.encode(content, forKey: .content)
+        try? container.encode(urlString, forKey: .urlString)
+        try? container.encode(imageUrlString, forKey: .imageUrlString)
+        try? container.encode(publishedAt, forKey: .publishedAt)
+        try? container.encode(source, forKey: .source)
     }
 }
 
@@ -75,7 +86,7 @@ extension Article {
     }
 }
 
-struct Source: Decodable, Equatable {
+struct Source: Codable, Equatable {
     let name: String?
 }
 
